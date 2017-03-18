@@ -9,6 +9,6 @@ Main Methods and Classes
   7. shallowCopy function
   8. deepCopy function
   9. Publisher class
-     a. Publisher#seriesPublish
-     b. Publisher#parallelPublish
+    a. Publisher#seriesPublish
+    b. Publisher#parallelPublish
   10. 
