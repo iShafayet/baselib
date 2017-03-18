@@ -8,7 +8,6 @@ Main Methods and Classes
   6. delay function
   7. shallowCopy function
   8. deepCopy function
-  9. Publisher class
-    a. Publisher#seriesPublish
-    b. Publisher#parallelPublish
-  10. 
+  9. Publisher class (Publisher#seriesPublish, Publisher#parallelPublish)
+  10. setImmediate function
+  11. once function
