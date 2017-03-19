@@ -86,3 +86,15 @@ class AsyncCondition
           @finalCbfn()
 
 @AsyncCondition = AsyncCondition
+
+
+###
+  @asyncIf
+###
+
+asyncIf = (expression)->
+  condition = new AsyncCondition
+  condition.eval expression
+  return condition
+
+@asyncIf = asyncIf
