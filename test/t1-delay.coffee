@@ -17,5 +17,5 @@ describe 'delay', ->
     timeStamp = (new Date).getTime()
     delay 300, ->
       now = (new Date).getTime()
-      expect(now - timeStamp).to.be.closeTo 300, 10
+      expect(now - timeStamp).to.be.closeTo 300, 100
       done()
