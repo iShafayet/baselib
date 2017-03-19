@@ -12,3 +12,5 @@ Main Methods and Classes
   9. Publisher class (Publisher#seriesPublish, Publisher#parallelPublish)
   10. setImmediate function
   11. once function
+  12. merge function
+  
