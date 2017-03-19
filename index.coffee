@@ -98,3 +98,61 @@ asyncIf = (expression)->
   return condition
 
 @asyncIf = asyncIf
+
+
+###
+  @shallowCopy
+###
+
+shallowCopy = (obj)->
+  return obj if obj is null or typeof (obj) isnt "object"
+  if obj instanceof Date
+    temp = new Date(obj.getTime())
+    return temp
+  if obj instanceof RegExp
+    flags = ''
+    if obj.global != null
+      flags += 'g'
+    if obj.ignoreCase != null
+      flags += 'i'
+    if obj.multiline != null
+      flags += 'm'
+    if obj.sticky != null
+      flags += 'y'
+    return new RegExp(obj.source, flags)
+  temp = new obj.constructor()
+  for key of obj
+    temp[key] = obj[key]
+  return temp
+
+@shallowCopy = shallowCopy
+
+
+###
+  @deepCopy
+###
+
+deepCopy = (obj)->
+  return obj if obj is null or typeof (obj) isnt "object"
+  if obj instanceof Date
+    temp = new Date(obj.getTime())
+    return temp
+  if obj instanceof RegExp
+    flags = ''
+    if obj.global != null
+      flags += 'g'
+    if obj.ignoreCase != null
+      flags += 'i'
+    if obj.multiline != null
+      flags += 'm'
+    if obj.sticky != null
+      flags += 'y'
+    return new RegExp(obj.source, flags)
+  temp = new obj.constructor()
+  for key of obj
+    temp[key] = deepCopy obj[key]
+  return temp
+
+@deepCopy = deepCopy
+
+
