@@ -156,3 +156,14 @@ deepCopy = (obj)->
 @deepCopy = deepCopy
 
 
+###
+  @once
+###
+
+once = (fn)->
+  return (args...)->
+    if fn
+      fn.apply this, args
+      fn = null
+
+@once = once
