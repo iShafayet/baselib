@@ -5,7 +5,7 @@ baselib = require './../index.coffee'
 
 { AsyncCondition, asyncIf } = baselib
 
-describe 'AsyncCondition', ->
+describe 'asyncIf', ->
 
   it 'Existence', ->
 
