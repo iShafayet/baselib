@@ -1,5 +1,6 @@
 
 Main Methods and Classes
+  0. AsyncCondition class
   1. asyncIf function
   2. asyncWhile function
   3. asyncForOf function

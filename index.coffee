@@ -41,3 +41,48 @@ delay = (timeout, fn)->
 
 @setImmediate = _setImmediate
 @_setImmediateShim = _setImmediateShim
+
+
+###
+  class @AsyncCondition
+###
+
+class AsyncCondition
+
+  constructor: ->
+    @truthyCbfn = null
+    @falsyCbfn = null
+    @isExpressionSet = false
+    @isExecuted = false
+    @finalCbfn = -> 'pass'
+
+  then: (@truthyCbfn)->
+    return @
+
+  else: (@falsyCbfn)->
+    return @
+
+  eval: (@expression)->
+    @isExpressionSet = true
+    _setImmediate @_evalIfReady
+    return @
+
+  finally: (@finalCbfn)->
+    _setImmediate @_evalIfReady
+    return @    
+  
+  _evalIfReady: =>
+    if @isExpressionSet and not @isExecuted
+      @isExecuted = true
+      if @expression
+        if @truthyCbfn
+          @truthyCbfn @finalCbfn
+        else
+          @finalCbfn()
+      else
+        if @falsyCbfn
+          @falsyCbfn @finalCbfn
+        else
+          @finalCbfn()
+
+@AsyncCondition = AsyncCondition
