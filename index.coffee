@@ -315,16 +315,19 @@ class AsyncCollector
   constructor: (@totalToCollect)->
     @count = 0
     @collection = {}
+    _setImmediate => @_finalizeIfDone()
+
+  _finalizeIfDone: ->
+    if @totalToCollect is @count
+      _setImmediate @finallyFn, @collection if @finallyFn
+      @finallyFn = null
 
   collect: (key = null, value = null)->
     unless @totalToCollect is @count
       if key
         @collection[key] = value
       @count += 1
-
-    if @totalToCollect is @count
-      _setImmediate @finallyFn, @collection if @finallyFn
-      @finallyFn = null
+    @_finalizeIfDone()
 
   finally: (@finallyFn)->
     return @
