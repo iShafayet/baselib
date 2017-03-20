@@ -18,9 +18,11 @@ describe 'asyncForIn', ->
     it = asyncForIn [ 1, 2, 3, 4 ]
     expect(it).to.be.an.instanceOf(AsyncIterator)
 
-  it 'General Use Case', ->
+  it 'General Use Case', (done)->
 
     array = [ 'A', 'B', 'C', 'D' ]
+
+    testString = ''
 
     asyncForIn array
     .forEach (next, index, item)->
@@ -30,9 +32,11 @@ describe 'asyncForIn', ->
       expect(testString).to.equal('ABCD')
       done()
 
-  it 'Alternative Form', ->
+  it 'Alternative Form', (done)->
 
     array = [ 'A', 'B', 'C', 'D' ]
+
+    testString = ''
 
     asyncForIn array, (next, index, item)->
       testString += item
@@ -41,9 +45,11 @@ describe 'asyncForIn', ->
       expect(testString).to.equal('ABCD')
       done()
 
-  it 'Zero Elements', ->
+  it 'Zero Elements', (done)->
 
     array = []
+
+    testString = ''
 
     asyncForIn array, (next, index, item)->
       testString += item
