@@ -305,5 +305,31 @@ asyncForOf = (object, forEachFn = null)->
 @asyncForOf = asyncForOf
 
 
+###
+  @class AsyncCollector
+  @purpose Asynchronous counter and data collector
+###
+
+class AsyncCollector
+
+  constructor: (@totalToCollect)->
+    @count = 0
+    @collection = {}
+
+  collect: (key = null, value = null)->
+    unless @totalToCollect is @count
+      if key
+        @collection[key] = value
+      @count += 1
+
+    if @totalToCollect is @count
+      _setImmediate @finallyFn, @collection if @finallyFn
+      @finallyFn = null
+
+  finally: (@finallyFn)->
+    return @
+
+@AsyncCollector = AsyncCollector
+
 
 
