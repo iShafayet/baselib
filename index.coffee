@@ -167,3 +167,44 @@ once = (fn)->
       fn = null
 
 @once = once
+
+
+###
+  @merge
+###
+
+merge = (a, b)->
+  if a is b
+    return a
+  if a is null or typeof a is 'undefined'
+    return b
+  if b is null or typeof b is 'undefined'
+    return a
+  if (typeof a) is 'object'
+    if (typeof b) isnt 'object'
+      return a
+    else
+      if Array.isArray a
+        if Array.isArray b
+          return [].concat a, b
+        else
+          return a
+      else
+        if Array.isArray b
+          return a
+        else
+          c = {}
+          for own key, _ of a
+            if b.hasOwnProperty key
+              c[key] = merge a[key], b[key]
+            else
+              c[key] = a[key]
+          for own key, _ of b
+            unless c.hasOwnProperty key
+              c[key] = b[key]
+          return c
+  return a
+
+@merge = merge
+
+
