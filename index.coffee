@@ -249,3 +249,20 @@ class AsyncIterator
 @AsyncIterator = AsyncIterator
 
 
+###
+  @asyncWhile
+###
+
+asyncWhile = (evalFn)->
+
+  it = new AsyncIterator
+
+  it.generateWith (expectedIndex)-> 
+    if evalFn() then [] else null
+
+  return it
+
+@asyncWhile = asyncWhile
+
+
+
