@@ -284,6 +284,26 @@ asyncForIn = (array, forEachFn = null)->
 @asyncForIn = asyncForIn
 
 
+###
+  @asyncForOf
+###
+
+asyncForOf = (object, forEachFn = null)->
+
+  array = Object.keys object
+
+  it = new AsyncIterator
+
+  it.generateWith (expectedIndex)-> 
+    if expectedIndex < array.length then [ array[expectedIndex], object[array[expectedIndex]] ] else null
+
+  if forEachFn
+    it.forEach forEachFn
+
+  return it
+
+@asyncForOf = asyncForOf
+
 
 
 
