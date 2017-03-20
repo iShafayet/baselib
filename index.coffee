@@ -265,4 +265,25 @@ asyncWhile = (evalFn)->
 @asyncWhile = asyncWhile
 
 
+###
+  @asyncForIn
+###
+
+asyncForIn = (array, forEachFn = null)->
+
+  it = new AsyncIterator
+
+  it.generateWith (expectedIndex)-> 
+    if expectedIndex < array.length then [ expectedIndex, array[expectedIndex] ] else null
+
+  if forEachFn
+    it.forEach forEachFn
+
+  return it
+
+@asyncForIn = asyncForIn
+
+
+
+
 
