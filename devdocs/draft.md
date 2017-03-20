@@ -3,10 +3,10 @@ Main Methods and Classes
 
   * (done) AsyncCondition class
   * (done) asyncIf function
-  * AsyncIterator class
-  * asyncWhile function
-  * asyncForOf function
-  * asyncForIn function
+  * (done) AsyncIterator class
+  * (done) asyncWhile function
+  * (done) asyncForOf function
+  * (done) asyncForIn function
   * Collector Class
   * (done) delay function
   * (done) shallowCopy function
