@@ -18,7 +18,7 @@ describe 'asyncWhile', ->
     it = asyncWhile -> 'TEST'
     expect(it).to.be.an.instanceOf(AsyncIterator)
 
-  it 'General Use Case', ->
+  it 'General Use Case', (done)->
 
     testString = ''
 
@@ -33,7 +33,7 @@ describe 'asyncWhile', ->
       done()
 
 
-  it 'General Use Case with Zero Iteration', ->
+  it 'General Use Case with Zero Iteration', (done)->
 
     testString = ''
 
@@ -44,6 +44,6 @@ describe 'asyncWhile', ->
       testString += 'A'
       next()
     .finally ->
-      expect(testString).to.equal('AAAAAAAAAA')
+      expect(testString).to.equal('')
       done()
 
