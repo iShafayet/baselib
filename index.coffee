@@ -208,3 +208,44 @@ merge = (a, b)->
 @merge = merge
 
 
+###
+  @class AsyncIterator
+  @purpose Asynchronous iterator supporting generator-esque behavior
+###
+
+class AsyncIterator
+
+  constructor: ()->
+    @index = 0
+    @hasIterationEnded = false
+    _setImmediate @next
+    
+  generateWith: (@generatorFn)->
+    return @
+
+  forEach: (@forEachFn)->
+    return @
+
+  next: ()=>
+    args = @generatorFn @index
+    if args is null
+      @hasIterationEnded = true
+      if @finalFn and @hasIterationEnded
+        cb = @finalFn
+        @finalFn = null
+        cb()
+    else
+      args = [ @next ].concat args
+      @index++
+      @forEachFn.apply {}, args
+
+  finally: (@finalFn)->
+    if @finalFn and @hasIterationEnded
+      cb = @finalFn
+      @finalFn = null
+      cb()
+    return @
+
+@AsyncIterator = AsyncIterator
+
+
