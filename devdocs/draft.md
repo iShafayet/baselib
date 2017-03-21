@@ -7,7 +7,7 @@ Main Methods and Classes
   * (done) asyncWhile function
   * (done) asyncForOf function
   * (done) asyncForIn function
-  * Collector Class
+  * (done) Collector Class
   * (done) delay function
   * (done) shallowCopy function
   * (done) deepCopy function
