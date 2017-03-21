@@ -11,7 +11,7 @@ Main Methods and Classes
   * (done) delay function
   * (done) shallowCopy function
   * (done) deepCopy function
-  * Publisher class (Publisher#seriesPublish, Publisher#parallelPublish)
+  * (done) Publisher class (Publisher#seriesPublish, Publisher#parallelPublish)
   * (done) setImmediate function
   * (done) once function
   * (done) merge function
