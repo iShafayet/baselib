@@ -239,6 +239,10 @@ class AsyncIterator
       @index++
       @forEachFn.apply {}, args
 
+  stop: ->
+    @hasIterationEnded = true
+    @finally @finalFn
+
   finally: (@finalFn)->
     if @finalFn and @hasIterationEnded
       cb = @finalFn
@@ -333,6 +337,66 @@ class AsyncCollector
     return @
 
 @AsyncCollector = AsyncCollector
+
+
+###
+  @class Publisher
+  @purpose Lightweight and optionally sequencially executed alternative to nodejs EventEmitters
+###
+
+class Publisher
+
+  constructor: ->
+    @subscriberFnList = []
+
+  publishInParallel: (data...)->
+    col = new AsyncCollector @subscriberFnList.length
+
+    col.finally =>
+      @finalCbfn() if @finalCbfn
+
+    doneFn = -> 
+      col.collect()
+
+    _setImmediate =>
+      for fn in @subscriberFnList
+        args = [ doneFn ].concat data
+        fn.apply {}, args
+
+    return @
+
+  publishInSeries: (data...)->
+    it = new AsyncIterator
+
+    array = @subscriberFnList
+
+    it.generateWith (expectedIndex)-> 
+      if expectedIndex < array.length then [ expectedIndex, array[expectedIndex] ] else null
+
+    it.forEach (next, index, fn)->
+      stopFn = -> 
+        it.stop()
+      args = [ next, stopFn ].concat data
+      fn.apply {}, args
+
+    it.finally =>
+      @finalCbfn() if @finalCbfn
+
+    return @
+
+  finally: (@finalCbfn)->
+    return @
+
+  subscribe: (fn)->
+    @subscriberFnList.push fn
+    return @
+
+  unsubscribe: (fn)->
+    if (index = @subscriberFnList.indexOf fn) > -1
+      @subscriberFnList.splice index, 1
+    return @
+
+@Publisher = Publisher
 
 
 
