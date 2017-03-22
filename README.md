@@ -49,6 +49,7 @@ npm install baselib --save
 
 ### delay
 `delay timeToWaitInMilliseconds, functionToCall`
+
 example:
 ```
 console.log 'Do Something'
@@ -58,6 +59,7 @@ delay 2000, ->
 
 ### setImmediate
 `setImmediate functionToCall, [argument1, [argument2, ... , [argumentN]]]`
+
 example:
 ```
 setImmediate ->
