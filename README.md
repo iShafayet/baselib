@@ -117,7 +117,7 @@ A shorthand for AsyncCondition
 
 example: (the same scenario as above)
 
-```
+```coffee-script
 asyncIf (typeof 1 is 'number')
 .then (cbfn)->
   console.log 'Got a number'
@@ -162,7 +162,7 @@ the `finally()` method takes a function as a parameter. The provided function (`
 
 Example: (In the example below, we actually iterate over an array and do some asynchronous operations)
 
-```
+```coffee
 testString = ''
 
 array = [ 'A', 'B', 'C', 'D' ]
