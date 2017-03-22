@@ -1,4 +1,4 @@
-# baselib
+# baselib 0.0.x
 One-stop solution for essential utilities (i.e. async loops, conditions, pub/sub) for nodejs and the browser.
 
 **N/B:** The code/examples in this file are in coffee-script. [Click here for the JavaScript Version](README-js.md) (coming soon)
@@ -80,11 +80,11 @@ Returns a new AsyncCondition object. It's methods are chainable. So you don't ha
 
 the `eval()` method takes any value which is immediately evaluated to find out whether it's truthy or falsy.
 
-### `AsyncCondition#then functionToCall`
+** `AsyncCondition#then functionToCall` **
 
 the `then()` method takes a function as a parameter. The provided function is invoked if the value provided to `eval()` is truthy. functionToCall will receive a single parameter which is a function. Call it to signal the end of operation.
 
-### `AsyncCondition#else functionToCall`
+** `AsyncCondition#else functionToCall` **
 
 the `else()` method takes a function as a parameter. The provided function is invoked if the value provided to `eval()` is falsy. functionToCall will receive a single parameter which is a function. Call it to signal the end of operation.
 
