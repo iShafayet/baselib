@@ -1,5 +1,7 @@
 # baselib
-One-stop solution for essential utilities (i.e. async loops, conditions, pub/sub) for nodejs and the browser
+One-stop solution for essential utilities (i.e. async loops, conditions, pub/sub) for nodejs and the browser.
+
+**N/B** The code/examples in this file are in coffee-script. [Click here for the JavaScript Version](README-js.md) (coming soon)
 
 ## Installation (NodeJS)
 
