@@ -209,23 +209,37 @@ asyncWhile -> i < 10
   next()
 .finally ->
   console.log "After loop"
-
-```
-
-i = 0
-asyncWhile -> i < 10
-.forEach (next)->
-  i += 1
-  testString += 'A'
-  next()
-.finally ->
-  expect(testString).to.equal('AAAAAAAAAA')
-  done()
-
 ```
 
 ## asyncForIn
-...
+
+`asyncForIn` let's you loop through each element of an array. (Just like the traditional `for ... in ...`  syntax)
+
+Sync Code:
+
+```
+array = [ 'A', 'B', 'C' ]
+console.log "Before loop"
+for item, index in array
+  console.log "In loop. Item #{item}. Index #{index}"
+console.log "After loop"
+```
+
+Same thing but asynchronously
+
+```
+array = [ 'A', 'B', 'C' ]
+console.log "Before loop"
+asyncForIn array
+.forEach (next, item, index)->
+  console.log "In loop. Item #{item}. Index #{index}"
+  next()
+.finally ->
+  console.log "After loop"
+```
+
+**N/B:** The sequence of the parameters is reversed. meaning, it's `next, index, item` and not `next, index, item`.
+
 
 ## asyncForOf
 ...
