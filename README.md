@@ -265,21 +265,52 @@ asyncForOf array
 ```
 
 ## AsyncCollector
+`AsyncCollector` class is a rather innovative way to handle multiple asynchronous operation that converge to a single callback. It has a built in mechanism to collect arbitrary data.
+
+### `new AsyncCollector numberOfParallelOperations`
+
+Returns a new AsyncCollector object. It's methods are chainable. So you don't have to name the object. It takes a single mandatory parameter. The number of parallel operations you intend to do.
+
+### `AsyncCollector#collect [key, value]`
+
+`collect` marks 1 operation as done (i.e. increments `numberOfOperationsDone`). The number of operations left is computed by `numberOfParallelOperations - numberOfOperationsDone`. It optionally takes a `key` and a `value` which gets stored in an object which is passed to the `fn` of `finally`
+
+
+### `AsyncIterator#finally fn`
+
+the `finally()` method takes a function as a parameter. The provided function (`fn`) is invoked only after iteration is complete. As a parameter, it will receive as a parameter the object in which the key/value pairs provided by `collect` method is collected.
+
+Example: 
+
+```coffee-script
+col = new AsyncCollector 3
+
+baselib.delay 10, -> 
+  col.collect 'a', 1
+
+baselib.delay 90, -> 
+  col.collect 'b', 2
+
+baselib.delay 180, -> 
+  col.collect 'c', 3
+
+col.finally (collection)->
+  console.log collection # prints { a: 1, b: 2, c: 3}
+```
+
+## Publisher
 ...
 
-### Publisher
+## shallowCopy
 ...
 
-### shallowCopy
+## deepCopy
 ...
 
-### deepCopy
+## once
 ...
 
-### once
-...
-
-### merge
+## merge
 ...
 
 
