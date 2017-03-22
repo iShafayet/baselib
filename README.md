@@ -48,10 +48,24 @@ npm install baselib --save
 
 
 ### delay
-..
+`delay timeToWaitInMilliseconds, functionToCall`
+example:
+```
+console.log 'Do Something'
+delay 2000, ->
+  console.log 'Do something after 2 seconds'
+```
 
 ### setImmediate
-...
+`setImmediate functionToCall, [argument1, [argument2, ... , [argumentN]]]`
+example:
+```
+setImmediate ->
+  console.log "I'll be executed second"
+setImmediate (someValue)->
+  console.log "I'll be executed third and here is #{someValue}"
+console.log "I'll be executed first"
+```
 
 ### AsyncCondition
 ...
