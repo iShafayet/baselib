@@ -3,13 +3,13 @@ One-stop solution for essential utilities (i.e. async loops, conditions, pub/sub
 
 **N/B:** The code/examples in this file are in coffee-script. [Click here for the JavaScript Version](README-js.md) (coming soon)
 
-## Installation (NodeJS)
+# Installation (NodeJS)
 
 ```
 npm install baselib --save
 ```
 
-## Require (NodeJS)
+# Require (NodeJS)
 ```
 {
   delay
@@ -29,7 +29,7 @@ npm install baselib --save
 } = require 'baselib'
 ```
 
-## Features
+# Features
 
 * [function `delay`](#delay) (setTimeout with better argument placement)
 * [function `setImmediate`](#setimmediate) (cross-platform shim for nodejs's setImmediate that guarantees execution order)
@@ -47,7 +47,7 @@ npm install baselib --save
 * [function `merge`](#merge) (merge two objects into a new one, recursively)
 
 
-### delay
+## delay
 `delay timeToWaitInMilliseconds, functionToCall`
 
 example:
@@ -57,7 +57,7 @@ delay 2000, ->
   console.log 'Do something after 2 seconds'
 ```
 
-### setImmediate
+## setImmediate
 `setImmediate functionToCall, [argument1, [argument2, ... , [argumentN]]]`
 
 example:
@@ -69,26 +69,26 @@ setImmediate (someValue)->
 console.log "I'll be executed first"
 ```
 
-### AsyncCondition
+## AsyncCondition
 AsyncCondition class enables you to manage your asynchronous code much more effectively while providing a reusable structure.
 
-`new AsyncCondition`
+### `new AsyncCondition`
 
 Returns a new AsyncCondition object. It's methods are chainable. So you don't have to name the object.
 
-`AsyncCondition#eval expression `
+### `AsyncCondition#eval expression `
 
 the `eval()` method takes any value which is immediately evaluated to find out whether it's truthy or falsy.
 
-`AsyncCondition#then functionToCall`
+### `AsyncCondition#then functionToCall`
 
 the `then()` method takes a function as a parameter. The provided function is invoked if the value provided to `eval()` is truthy. functionToCall will receive a single parameter which is a function. Call it to signal the end of operation.
 
-`AsyncCondition#else functionToCall`
+### `AsyncCondition#else functionToCall`
 
 the `else()` method takes a function as a parameter. The provided function is invoked if the value provided to `eval()` is falsy. functionToCall will receive a single parameter which is a function. Call it to signal the end of operation.
 
-`AsyncCondition#finally functionToCall`
+### `AsyncCondition#finally functionToCall`
 
 the `finally()` method takes a function as a parameter. The provided function is invoked only after the operation of either `then()` or `else()` has been finished.
 
@@ -109,7 +109,7 @@ c1.finally ->
   console.log 'I will be called anyway when the `cbfn` of `then` is invoked'
 ```
 
-### asyncIf
+## asyncIf
 
 A shorthand for AsyncCondition
 
@@ -131,7 +131,7 @@ asyncIf (typeof 1 is 'number')
   console.log 'I will be called anyway when the `cbfn` of `then` is invoked'
 ```
 
-### AsyncIterator
+## AsyncIterator
 `AsyncIterator` class provides a low level interface for running asynchronous operations in loops. It is very very generalized and so it can be used to implement almost any kind of looping behavior with minimal effort. For example, baselib comes with three functions that can effectively replace the synchronous counterparts. Namely, `asyncWhile` replacing `while`, `asyncForIn` replacing `for ... in ...` (array iteration), `asyncForOf` replacing `for ... of ...` (object's key/value pair iteration). All these functions are based on `AsyncIterator`.
 
 **N/B:** AsyncIterator class is designed for maximum configurability. `asyncWhile`, `asyncForOf` and `asyncForIn` is much better suited for common use cases.
@@ -184,16 +184,16 @@ it.finally ->
 
 
 
-### asyncWhile
+## asyncWhile
 ...
 
-### asyncForIn
+## asyncForIn
 ...
 
-### asyncForOf
+## asyncForOf
 ...
 
-### AsyncCollector
+## AsyncCollector
 ...
 
 ### Publisher
