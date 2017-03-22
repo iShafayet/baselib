@@ -78,21 +78,36 @@ Returns a new AsyncCondition object. It's methods are chainable. So you don't ha
 
 `AsyncCondition#eval expression `
 
-the eval() method takes any value which is immediately evaluated to find out whether it's truthy or falsy.
+the `eval()` method takes any value which is immediately evaluated to find out whether it's truthy or falsy.
 
 `AsyncCondition#then functionToCall`
 
-the then() method takes a function as a parameter. The provided function is invoked if the value provided to eval() is truthy. functionToCall will receive a single parameter which is a function. Call it to signal the end of operation.
+the `then()` method takes a function as a parameter. The provided function is invoked if the value provided to `eval()` is truthy. functionToCall will receive a single parameter which is a function. Call it to signal the end of operation.
 
 `AsyncCondition#else functionToCall`
 
-the else() method takes a function as a parameter. The provided function is invoked if the value provided to eval() is falsy. functionToCall will receive a single parameter which is a function. Call it to signal the end of operation.
+the `else()` method takes a function as a parameter. The provided function is invoked if the value provided to `eval()` is falsy. functionToCall will receive a single parameter which is a function. Call it to signal the end of operation.
 
 `AsyncCondition#finally functionToCall`
 
-the finally() method takes a function as a parameter. The provided function is invoked only after the operation of either then() or else() has been finished.
+the `finally()` method takes a function as a parameter. The provided function is invoked only after the operation of either `then()` or `else()` has been finished.
 
+example:
 
+```
+c1 = new AsyncCondition
+c1.eval (typeof 1 is 'number')
+c1.then (cbfn)->
+  console.log 'Got a number'
+  delay 100, ->
+    console.log 'Delayed for the sake of example'
+    cbfn() # signal the end of operation
+c1.else (cbfn)->
+  console.log 'Did not get a number'
+  cbfn()
+c1.finally ->
+  console.log 'I will be called anyway'
+```
 
 
 ### asyncIf
