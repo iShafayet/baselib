@@ -182,10 +182,47 @@ it.finally ->
   done()
 ```
 
-
-
 ## asyncWhile
-...
+
+`asyncWhile` let's you do asynchronous operations on a loop while a certain condition is true. (Just like the traditional `while` syntax)
+
+Sync Code:
+
+```
+console.log "Before loop"
+i = 0
+while i < 10
+  console.log "In loop"
+  i++
+console.log "After loop"
+```
+
+Same thing but asynchronously
+
+```
+console.log "Before loop"
+i = 0
+asyncWhile -> i < 10
+.forEach (next)->
+  console.log "In loop"
+  i += 1
+  next()
+.finally ->
+  console.log "After loop"
+
+```
+
+i = 0
+asyncWhile -> i < 10
+.forEach (next)->
+  i += 1
+  testString += 'A'
+  next()
+.finally ->
+  expect(testString).to.equal('AAAAAAAAAA')
+  done()
+
+```
 
 ## asyncForIn
 ...
