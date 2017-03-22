@@ -51,7 +51,7 @@ npm install baselib --save
 `delay timeToWaitInMilliseconds, functionToCall`
 
 example:
-```
+```cs
 console.log 'Do Something'
 delay 2000, ->
   console.log 'Do something after 2 seconds'
@@ -61,7 +61,7 @@ delay 2000, ->
 `setImmediate functionToCall, [argument1, [argument2, ... , [argumentN]]]`
 
 example:
-```
+```cs
 setImmediate ->
   console.log "I'll be executed second"
 setImmediate (someValue)->
@@ -94,7 +94,7 @@ the `finally()` method takes a function as a parameter. The provided function is
 
 example:
 
-```
+```cs
 c1 = new AsyncCondition
 c1.eval (typeof 1 is 'number')
 c1.then (cbfn)->
