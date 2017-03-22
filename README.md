@@ -70,7 +70,30 @@ console.log "I'll be executed first"
 ```
 
 ### AsyncCondition
-...
+AsyncCondition class enables you to manage your asynchronous code much more effectively while providing a reusable structure.
+
+`new AsyncCondition`
+
+Returns a new AsyncCondition object. It's methods are chainable. So you don't have to name the object.
+
+`AsyncCondition#eval expression `
+
+the eval() method takes any value which is immediately evaluated to find out whether it's truthy or falsy.
+
+`AsyncCondition#then functionToCall`
+
+the then() method takes a function as a parameter. The provided function is invoked if the value provided to eval() is truthy. functionToCall will receive a single parameter which is a function. Call it to signal the end of operation.
+
+`AsyncCondition#else functionToCall`
+
+the else() method takes a function as a parameter. The provided function is invoked if the value provided to eval() is falsy. functionToCall will receive a single parameter which is a function. Call it to signal the end of operation.
+
+`AsyncCondition#finally functionToCall`
+
+the finally() method takes a function as a parameter. The provided function is invoked only after the operation of either then() or else() has been finished.
+
+
+
 
 ### asyncIf
 ...
