@@ -80,7 +80,7 @@ Returns a new AsyncCondition object. It's methods are chainable. So you don't ha
 
 the `eval()` method takes any value which is immediately evaluated to find out whether it's truthy or falsy.
 
-### AsyncCondition#then functionToCall
+### `AsyncCondition#then functionToCall`
 
 the `then()` method takes a function as a parameter. The provided function is invoked if the value provided to `eval()` is truthy. functionToCall will receive a single parameter which is a function. Call it to signal the end of operation.
 
@@ -136,27 +136,27 @@ asyncIf (typeof 1 is 'number')
 
 **N/B:** AsyncIterator class is designed for maximum configurability. `asyncWhile`, `asyncForOf` and `asyncForIn` is much better suited for common use cases.
 
-## `new AsyncIterator`
+### `new AsyncIterator`
 
 Returns a new AsyncCondition object. It's methods are chainable. So you don't have to name the object.
 
-## `AsyncIterator#generateWith fn`
+### `AsyncIterator#generateWith fn`
 
 `generateWith` takes a function as the only parameter. The provided function is invoked every time we need decide whether to do another iteration or not. The provided function may return an array (which can be empty) which will be passed on to the callbacks of the `forEach()` method. If the provided function returns `null` then it is assumed that there can be no more iterations and the callback for the `finally()` method is invoked.
 
-## `AsyncIterator#forEach fn`
+### `AsyncIterator#forEach fn`
 
 `forEach` takes a function as the only parameter `fn`. `fn` is called every time there is anything iterable. `fn` will receive a function `next` as the first parameter which must be called to signal the end of an operation. Any parameters returned by `generateWith` is sent to the `fn`.
 
-## `AsyncIterator#next`
+### `AsyncIterator#next`
 
 `next` iterates to the next item.
 
-## `AsyncIterator#stop`
+### `AsyncIterator#stop`
 
 `stop` stops the iteration. similar to `break` in while loops.
 
-## `AsyncIterator#finally fn`
+### `AsyncIterator#finally fn`
 
 the `finally()` method takes a function as a parameter. The provided function (`fn`) is invoked only after iteration is complete. (i.e. `generateWith` returned `null` or `stop` was called)
 
