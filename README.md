@@ -29,7 +29,7 @@ npm install baselib --save
 
 ## Features
 
-* function delay (setTimeout with better argument placement)
+* <span style="font-size: 20px;">[function `delay`](#delay)</span> (setTimeout with better argument placement)
 * function setImmediate (cross-platform shim for nodejs's setImmediate that guarantees execution order)
 * class AsyncCondition (helps async workflow significantly. simplifies complex callbacks and if/else conditions)
 * function asyncIf (shorthand/sugar for AsyncCondition)
@@ -45,5 +45,6 @@ npm install baselib --save
 * function merge (merge two objects into a new one, recursively)
 
 
-*
+### <a name="delay">delay</a>
+..
 
