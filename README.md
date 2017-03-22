@@ -238,9 +238,6 @@ asyncForIn array
   console.log "After loop"
 ```
 
-**N/B:** The sequence of the parameters is reversed. meaning, it's `next, index, item` and not `next, index, item`.
-
-
 ## asyncForOf
 ...
 
