@@ -132,7 +132,15 @@ asyncIf (typeof 1 is 'number')
 ```
 
 ### AsyncIterator
-...
+`AsyncIterator` class provides a low level interface for running asynchronous operations in loops. It is very very generalized and so it can be used to implement almost any kind of looping behavior with minimal effort. For example, baselib comes with three functions that can effectively replace the synchronous counterparts. Namely, `asyncWhile` replacing `while`, `asyncForIn` replacing `for ... in ...` (array iteration), `asyncForOf` replacing `for ... of ...` (object's key/value pair iteration). All these functions are based on `AsyncIterator`.
+
+`new AsyncIterator`
+
+Returns a new AsyncCondition object. It's methods are chainable. So you don't have to name the object.
+
+`AsyncIterator#generateWith fn`
+
+`generateWith` takes a function as the only parameter. The provided function is invoked every time we need decide whether to do another iteration or not. The provided function may return an array (which can be empty) which will be passed on to the callbacks of the `forEach()` method. If the provided function returns `null` then it is assumed that there can be no more iterations and the callback for the `finally()` method is invoked.
 
 ### asyncWhile
 ...
