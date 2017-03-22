@@ -51,7 +51,7 @@ npm install baselib --save
 `delay timeToWaitInMilliseconds, functionToCall`
 
 example:
-```cs
+```coffee-script
 console.log 'Do Something'
 delay 2000, ->
   console.log 'Do something after 2 seconds'
@@ -61,7 +61,7 @@ delay 2000, ->
 `setImmediate functionToCall, [argument1, [argument2, ... , [argumentN]]]`
 
 example:
-```cs
+```coffee-script
 setImmediate ->
   console.log "I'll be executed second"
 setImmediate (someValue)->
@@ -94,7 +94,7 @@ the `finally()` method takes a function as a parameter. The provided function is
 
 example:
 
-```cs
+```coffee-script
 c1 = new AsyncCondition
 c1.eval (typeof 1 is 'number')
 c1.then (cbfn)->
@@ -162,7 +162,7 @@ the `finally()` method takes a function as a parameter. The provided function (`
 
 Example: (In the example below, we actually iterate over an array and do some asynchronous operations)
 
-```coffee
+```coffee-script
 testString = ''
 
 array = [ 'A', 'B', 'C', 'D' ]
@@ -188,7 +188,7 @@ it.finally ->
 
 Sync Code:
 
-```
+```coffee-script
 console.log "Before loop"
 i = 0
 while i < 10
@@ -199,7 +199,7 @@ console.log "After loop"
 
 Same thing but asynchronously
 
-```
+```coffee-script
 console.log "Before loop"
 i = 0
 asyncWhile -> i < 10
@@ -217,7 +217,7 @@ asyncWhile -> i < 10
 
 Sync Code:
 
-```
+```coffee-script
 array = [ 'A', 'B', 'C' ]
 console.log "Before loop"
 for item, index in array
@@ -227,7 +227,7 @@ console.log "After loop"
 
 Same thing but asynchronously
 
-```
+```coffee-script
 array = [ 'A', 'B', 'C' ]
 console.log "Before loop"
 asyncForIn array
@@ -239,7 +239,30 @@ asyncForIn array
 ```
 
 ## asyncForOf
-...
+`asyncForOf` let's you loop through each key/value pair of an object/map. (Just like the traditional `for ... of ...`  syntax)
+
+Sync Code:
+
+```coffee-script
+object = { a: 1, b: 2 , c: 3 }
+console.log "Before loop"
+for own key, value of array
+  console.log "In loop. Key #{key}. Value #{value}"
+console.log "After loop"
+```
+
+Same thing but asynchronously
+
+```coffee-script
+object = { a: 1, b: 2 , c: 3 }
+console.log "Before loop"
+asyncForOf array
+.forEach (next, key, value)->
+  console.log "In loop. Key #{key}. Value #{value}"
+  next()
+.finally ->
+  console.log "After loop"
+```
 
 ## AsyncCollector
 ...
