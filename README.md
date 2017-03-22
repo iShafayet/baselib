@@ -1,7 +1,7 @@
 # baselib
 One-stop solution for essential utilities (i.e. async loops, conditions, pub/sub) for nodejs and the browser.
 
-**N/B** The code/examples in this file are in coffee-script. [Click here for the JavaScript Version](README-js.md) (coming soon)
+**N/B:** The code/examples in this file are in coffee-script. [Click here for the JavaScript Version](README-js.md) (coming soon)
 
 ## Installation (NodeJS)
 
@@ -113,7 +113,7 @@ c1.finally ->
 
 A shorthand for AsyncCondition
 
-`asyncIf expression` (returns an AsyncCondition instance.)
+`asyncIf expression` (returns an AsyncCondition instance who's `eval()` has already been called.)
 
 example: (the same scenario as above)
 
@@ -134,6 +134,8 @@ asyncIf (typeof 1 is 'number')
 ### AsyncIterator
 `AsyncIterator` class provides a low level interface for running asynchronous operations in loops. It is very very generalized and so it can be used to implement almost any kind of looping behavior with minimal effort. For example, baselib comes with three functions that can effectively replace the synchronous counterparts. Namely, `asyncWhile` replacing `while`, `asyncForIn` replacing `for ... in ...` (array iteration), `asyncForOf` replacing `for ... of ...` (object's key/value pair iteration). All these functions are based on `AsyncIterator`.
 
+**N/B:** AsyncIterator class is designed for maximum configurability. `asyncWhile`, `asyncForOf` and `asyncForIn` is much better suited for common use cases.
+
 `new AsyncIterator`
 
 Returns a new AsyncCondition object. It's methods are chainable. So you don't have to name the object.
@@ -141,6 +143,46 @@ Returns a new AsyncCondition object. It's methods are chainable. So you don't ha
 `AsyncIterator#generateWith fn`
 
 `generateWith` takes a function as the only parameter. The provided function is invoked every time we need decide whether to do another iteration or not. The provided function may return an array (which can be empty) which will be passed on to the callbacks of the `forEach()` method. If the provided function returns `null` then it is assumed that there can be no more iterations and the callback for the `finally()` method is invoked.
+
+`AsyncIterator#forEach fn`
+
+`forEach` takes a function as the only parameter `fn`. `fn` is called every time there is anything iterable. `fn` will receive a function `next` as the first parameter which must be called to signal the end of an operation. Any parameters returned by `generateWith` is sent to the `fn`.
+
+`AsyncIterator#next`
+
+`next` iterates to the next item.
+
+`AsyncIterator#stop`
+
+`stop` stops the iteration. similar to `break` in while loops.
+
+`AsyncIterator#finally fn`
+
+the `finally()` method takes a function as a parameter. The provided function (`fn`) is invoked only after iteration is complete. (i.e. `generateWith` returned `null` or `stop` was called)
+
+Example: (In the example below, we actually iterate over an array and do some asynchronous operations)
+
+```
+testString = ''
+
+array = [ 'A', 'B', 'C', 'D' ]
+
+it = new AsyncIterator
+
+it.generateWith (expectedIndex)-> 
+  if expectedIndex < array.length then [ expectedIndex, array[expectedIndex] ] else null
+
+it.forEach (next, index, item)->
+  delay 10, ->
+    testString += item + index
+    next()
+
+it.finally ->
+  console.log testString # prints 'A0B1C2D3'
+  done()
+```
+
+
 
 ### asyncWhile
 ...
