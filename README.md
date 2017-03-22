@@ -1,7 +1,7 @@
 # baselib 0.0.x
 One-stop solution for essential utilities (i.e. async loops, conditions, pub/sub) for nodejs and the browser.
 
-[![NPM](https://nodei.co/npm/baselib.png)](https://npmjs.org/package/baselib)
+[![NPM](https://nodei.co/npm/baselib.png?compact=true)](https://npmjs.org/package/baselib)
 
 **N/B:** The code/examples in this file are in coffee-script. <!-- [Click here for the JavaScript Version](README-js.md) (coming soon)--> Javascript examples are coming soon.
 
