@@ -25,7 +25,7 @@ describe 'asyncForIn', ->
     testString = ''
 
     asyncForIn array
-    .forEach (next, index, item)->
+    .forEach (next, item, index)->
       testString += item
       next()
     .finally ->
@@ -38,7 +38,7 @@ describe 'asyncForIn', ->
 
     testString = ''
 
-    asyncForIn array, (next, index, item)->
+    asyncForIn array, (next, item, index)->
       testString += item
       next()
     .finally ->
@@ -51,7 +51,7 @@ describe 'asyncForIn', ->
 
     testString = ''
 
-    asyncForIn array, (next, index, item)->
+    asyncForIn array, (next, item, index)->
       testString += item
       next()
     .finally ->
