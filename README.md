@@ -106,12 +106,30 @@ c1.else (cbfn)->
   console.log 'Did not get a number'
   cbfn()
 c1.finally ->
-  console.log 'I will be called anyway'
+  console.log 'I will be called anyway when the `cbfn` of `then` is invoked'
 ```
 
-
 ### asyncIf
-...
+
+A shorthand for AsyncCondition
+
+`asyncIf expression` (returns an AsyncCondition instance.)
+
+example: (the same scenario as above)
+
+```
+asyncIf (typeof 1 is 'number')
+.then (cbfn)->
+  console.log 'Got a number'
+  delay 100, ->
+    console.log 'Delayed for the sake of example'
+    cbfn() # signal the end of operation
+.else (cbfn)->
+  console.log 'Did not get a number'
+  cbfn()
+.finally ->
+  console.log 'I will be called anyway when the `cbfn` of `then` is invoked'
+```
 
 ### AsyncIterator
 ...
