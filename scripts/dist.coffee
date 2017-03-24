@@ -33,13 +33,55 @@ directives = JSON.parse directives
 
 version = directives.version
 
-path = (pathlib.join process.cwd(), '/build-dist-browser')
+path = process.cwd()
+
+path = (pathlib.join path, '/dist')
 
 fslib.mkdirSync path unless fslib.existsSync path
+
+path = (pathlib.join path, '/browser')
+
+fslib.mkdirSync path unless fslib.existsSync path
+
+filenameList = fslib.readdirSync path
+for filename in filenameList
+  fslib.unlink (pathlib.join path, filename)
 
 path = (pathlib.join path, "/baselib-#{version}.js")
 
 fslib.writeFileSync path, output, {encoding:'utf8'}
 
 console.log "Compiled to \"#{path}\"\n\n"
+
+jsFilePath = path
+
+readmeFilePath = (pathlib.join process.cwd(), 'README.md')
+
+makeBrowserAreaString = (version) ->
+  return """
+  <!-- Browser Area Start -->
+  # Installation (Browser)
+
+  [Download the latest build](https://github.com/iShafayet/baselib/blob/master/dist/browser/baselib-#{version}.js) and put it in your application.
+
+  ```
+  <script type="text/javascript" src="baselib-#{version}.js"></script>
+  ```
+  <!-- Browser Area End -->
+  """
+
+content = fslib.readFileSync readmeFilePath, { encoding: 'utf8' }
+
+firstIndex = content.indexOf '<!-- Browser Area Start -->'
+
+lastIndex = (content.indexOf '<!-- Browser Area End -->') + ('<!-- Browser Area End -->'.length)
+
+left = content.substr 0, (firstIndex)
+
+right = content.substr lastIndex
+
+medium = left + (makeBrowserAreaString version) + right
+
+fslib.writeFileSync readmeFilePath, medium, { encoding: 'utf8' }
+
 
