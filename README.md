@@ -34,25 +34,25 @@ npm install baselib --save
 # Features
 
 * [function `delay`](#delay) (setTimeout with better argument placement)
-* [function `setImmediate`](#setimmediate) (cross-platform shim for nodejs's setImmediate that guarantees execution order)
-* [class `AsyncCondition`](#asynccondition) (helps async workflow significantly. simplifies complex callbacks and if/else conditions)
-* [function `asyncIf`](#asyncif) (shorthand/sugar for AsyncCondition)
-* [class `AsyncIterator`](#asynciterator) (magical solution for looping asynchronously. Supports generator-esque behavior)
-* [function `asyncWhile`](#asyncwhile) (`while` with `async` operation support)
-* [function `asyncForIn`](#asyncforin) (`for ... in ...` (array iteration) with `async` operation support)
-* [function `asyncForOf`](#asyncforof) (`for ... of ...` (object's key/value pair iteration) with `async` operation support)
-* [class `AsyncCollector`](#asynccollector) (very developer-friendly, clean way to handle parallel operations)
+* [function `setImmediate`](#setimmediate) (Cross-platform shim for nodejs's setImmediate that guarantees execution order)
+* [class `AsyncCondition`](#asynccondition) (Helps async workflow significantly. Simplifies complex callbacks and if/else conditions)
+* [function `asyncIf`](#asyncif) (Shorthand/sugar for AsyncCondition)
+* [class `AsyncIterator`](#asynciterator) (Very flexible and *clean* solution for looping asynchronously. Supports generator-esque behavior)
+* [function `asyncWhile`](#asyncwhile) (`while` with asynchronous operation support)
+* [function `asyncForIn`](#asyncforin) (`for ... in ...` (array iteration) with asynchronous operation support)
+* [function `asyncForOf`](#asyncforof) (`for ... of ...` (object's key/value pair iteration) with asynchronous operation support)
+* [class `AsyncCollector`](#asynccollector) (Very developer-friendly, clean way to handle parallel operations that converge)
 * [class `Publisher`](#publisher) (Replacement for nodejs's events with both Series/Sequencial/Blocking and Parallel/Concurrent execution of listeners)
-* [function `shallowCopy`](#shallowcopy) (copy an object)
-* [function `deepCopy`](#deepcopy) (copy and object and it's properties recursively)
-* [function `once`](#once) (converts a function into one that can be only called once)
-* [function `merge`](#merge) (merge two objects into a new one, recursively)
+* [function `shallowCopy`](#shallowcopy) (Copy all properties of an object)
+* [function `deepCopy`](#deepcopy) (Copy and object and it's properties recursively)
+* [function `once`](#once) (Converts a function into one that can be only called once)
+* [function `merge`](#merge) (Merge two objects into a new one, recursively)
 
 
 ## delay
 `delay timeToWaitInMilliseconds, functionToCall`
 
-example:
+<u>example:</u>
 ```coffee-script
 console.log 'Do Something'
 delay 2000, ->
