@@ -1,4 +1,4 @@
-# baselib 0.0.x
+# baselib
 One-stop solution for essential utilities (i.e. async loops, conditions, pub/sub) for nodejs and the browser.
 
 [![NPM](https://nodei.co/npm/baselib.png?compact=true)](https://npmjs.org/package/baselib)
