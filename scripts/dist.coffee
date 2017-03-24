@@ -64,7 +64,7 @@ makeBrowserAreaString = (version) ->
 
   [Download the latest build](https://github.com/iShafayet/baselib/blob/master/dist/browser/baselib-#{version}.js) and put it in your application.
 
-  ```
+  ```html
   <script type="text/javascript" src="baselib-#{version}.js"></script>
   ```
   <!-- Browser Area End -->
