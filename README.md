@@ -317,32 +317,136 @@ For `Publisher#publishInParallel`, the fn's signature will be like `fn = (next, 
 
 ### `Publisher#unsubscribe fn`
 
-the `unsubscribe()` method takes a function as a parameter. If `fn` is already in queue it will remove it. Otherwise it has no effect
+The `unsubscribe()` method takes a function as a parameter. If `fn` is already in queue it will remove it. Otherwise it has no effect
 
+### `Publisher#publishInSeries data...`
 
+The `publishInSeries` method lets you publish your data to all the subscribers one by one. One subscriber must call the `next` function in order to propagate data to the next subscriber. The data you provided will be passed on to the subscribers.
+
+### `Publisher#publishInParallel data...`
+
+The `publishInParallel` method lets you publish your data to all the subscribers parallely. The data you provided will be passed on to the subscribers.
+
+### `AsyncIterator#finally fn`
+
+the `finally()` method takes a function as a parameter. The provided function (`fn`) is invoked only after either all the subscriber has called the `next` function or at least one has called the `stop` function.
 
 Example: 
 
 ```coffee-script
-col = new AsyncCollector 3
+testString = ''
 
-baselib.delay 10, -> 
-  col.collect 'a', 1
+pub = new Publisher
 
-baselib.delay 90, -> 
-  col.collect 'b', 2
+pub.subscribe (next, stop, arg1, arg2)->
+  testString += 'A' + arg1 + arg2
+  next()
+
+pub.subscribe (next, stop, arg1, arg2)->
+  testString += 'B' + arg1 + arg2
+  stop()
+
+pub.subscribe (next, stop, arg1, arg2)->
+  testString += 'C'
+  next()
+
+pub.finally ->
+  console.log testString # prints 'Aa1Ba1'
+  done()
+
+baselib.delay 50, ->
+  pub.publishInSeries 'a', 1
 ```
 
 ## shallowCopy
-...
+`shallowCopy anyValue`
+
+shallowCopy copies all the properties/items in an object/array to a new one. If given a non-object / non-array value (i.e. Number, String etc), the value is returned.
+
+It handles Regex and Date objects as well. Also, calls the constructor for user made classes and copies the properties. So, if there are no hidden properties, user made class instances should be copied reasonably reliably.
+
+```
+testObject = {
+  a: 3
+  b:
+    ba: 4
+    bb: 5
+  c: [
+    1
+    2
+    {
+      r: 3
+      x: 4
+    }
+  ]
+  d: new Date
+}
+copiedObject = shallowCopy testObject
+console.log testObject is copiedObject # false
+console.log testObject.b is copiedObject.b # true
+```
 
 ## deepCopy
-...
+`deepCopy anyValue`
+
+deepCopy copies all the properties/items in an object/array to a new one **recursively**. If given a non-object / non-array value (i.e. Number, String etc), the value is returned.
+
+It handles Regex and Date objects as well. Also, calls the constructor for user made classes and copies the properties. So, if there are no hidden properties, user made class instances should be copied reasonably reliably.
+
+```
+testObject = {
+  a: 3
+  b:
+    ba: 4
+    bb: 5
+  c: [
+    1
+    2
+    {
+      r: 3
+      x: 4
+    }
+  ]
+  d: new Date
+}
+copiedObject = shallowCopy testObject
+console.log testObject is copiedObject # false
+console.log testObject.b is copiedObject.b # false
+```
 
 ## once
-...
+`once fn`
+
+`once` returns a function that can be called only once. Effectively you could say it converts a function so that it can be called only once. It passes on the execution context (a.k.a. `this`) reliably.
+
+Example
+```
+testInteger = 0
+
+fn = -> testInteger += 1
+
+oFn = once fn
+
+oFn()
+oFn()
+oFn()
+
+console.log testInteger # prints 1
+```
 
 ## merge
-...
+`merge value1, value2`
+
+`merge` as the name suggests, merges two values (most usefully objects and arrays) into one. `merge` makes sure that the original values `value1` and `value2` are not altered in any way. However it does not ensure that the tree is fully unique. In order to get a guaranteed unique copy perform `deepCopy merge value1, value2`
+
+Example
+
+```
+    a = { a: 1, c: { d: 4, e: 5, k: [ 1, 4 ] } }
+    b = { b: 2, c: { d: 4, f: 6, k: [ 2 ] } }
+    m = merge a, b
+   
+    console.log m # prints { a: 1, b: 2, c: { d: 4, e: 5, f: 6, k: [ 1, 4, 2 ] } }
+```
 
 
