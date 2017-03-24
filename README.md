@@ -301,7 +301,37 @@ col.finally (collection)->
 ```
 
 ## Publisher
-...
+`Publisher` class is a lightweight alternative to NodeJS's EventEmitters. It has the option to publish data either *sequentially* or *parallely* allowing a much greater flow control. On sequencial operations, a subscriber can even choose to stop the propagation altogether, much like the `Event#stopPropagation` in DOM.
+
+### `new Publisher`
+
+Returns a new Publisher object. It's methods are chainable. So you don't have to name the object.
+
+### `Publisher#subscribe fn`
+
+the `subscribe()` method takes a function as a parameter. The provided function (`fn`) is put in a queue and called with the data provided by `Publisher#publishInSeries` or `Publisher#publishInParallel`. 
+
+For `Publisher#publishInSeries`, the fn's signature will be like `fn = (next, stop, args...)->`. where `next` is a function that must be called to signal the end of operation. `stop` can be called to stop the propagation of the data altogether (depriving the subsequent subscribers). These two parameters are followed by any data published.
+
+For `Publisher#publishInParallel`, the fn's signature will be like `fn = (next, args...)->`. where `next` is a function that must be called to signal the end of operation. There is no `stop` operation as all the subscribers are notified in parallel. The `next` parameter is followed by any data published.
+
+### `Publisher#unsubscribe fn`
+
+the `unsubscribe()` method takes a function as a parameter. If `fn` is already in queue it will remove it. Otherwise it has no effect
+
+
+
+Example: 
+
+```coffee-script
+col = new AsyncCollector 3
+
+baselib.delay 10, -> 
+  col.collect 'a', 1
+
+baselib.delay 90, -> 
+  col.collect 'b', 2
+```
 
 ## shallowCopy
 ...
