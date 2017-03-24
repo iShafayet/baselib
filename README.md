@@ -31,6 +31,17 @@ npm install baselib --save
 } = require 'baselib'
 ```
 
+
+<!-- Browser Area Start -->
+# Installation (Browser)
+
+[Download the latest build](https://github.com/iShafayet/baselib/blob/master/dist/browser/baselib-0.0.3.js) and put it in your application.
+
+```
+<script type="text/javascript" src="baselib-0.0.3.js"></script>
+```
+<!-- Browser Area End -->
+
 # Features
 
 * [function `delay`](#delay) (setTimeout with better argument placement)
