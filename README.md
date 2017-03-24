@@ -37,7 +37,7 @@ npm install baselib --save
 
 [Download the latest build](https://github.com/iShafayet/baselib/blob/master/dist/browser/baselib-0.0.3.js) and put it in your application.
 
-```
+```html
 <script type="text/javascript" src="baselib-0.0.3.js"></script>
 ```
 <!-- Browser Area End -->
