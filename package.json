@@ -5,7 +5,7 @@
     "main": "index-runner.js",
     "scripts": {
         "test": "mocha --compilers coffee:coffee-script/register",
-        "dist": "coffee scripts/dist.coffee"
+        "dist-browser": "coffee scripts/dist.coffee"
     },
     "repository": {
         "type": "git",
