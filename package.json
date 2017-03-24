@@ -1,6 +1,6 @@
 {
     "name": "baselib",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "description": "One-stop solution for essential utilities (i.e. async loops, conditions, pub/sub) for nodejs and the browser.",
     "main": "index-runner.js",
     "scripts": {
