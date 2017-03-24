@@ -62,7 +62,7 @@ delay 2000, ->
 ## setImmediate
 `setImmediate functionToCall, [argument1, [argument2, ... , [argumentN]]]`
 
-example:
+**Example:**
 ```coffee-script
 setImmediate ->
   console.log "I'll be executed second"
@@ -80,21 +80,21 @@ Returns a new AsyncCondition object. It's methods are chainable. So you don't ha
 
 ### `AsyncCondition#eval expression`
 
-the `eval()` method takes any value which is immediately evaluated to find out whether it's truthy or falsy.
+the `eval` method takes any value which is immediately evaluated to find out whether it's truthy or falsy.
 
 ### `AsyncCondition#then functionToCall`
 
-the `then()` method takes a function as a parameter. The provided function is invoked if the value provided to `eval()` is truthy. functionToCall will receive a single parameter which is a function. Call it to signal the end of operation.
+the `then` method takes a function as a parameter. The provided function is invoked if the value provided to `eval` is truthy. `functionToCall` will receive a single parameter which is a function. Call it to signal the end of operation.
 
 ### `AsyncCondition#else functionToCall`
 
-the `else()` method takes a function as a parameter. The provided function is invoked if the value provided to `eval()` is falsy. functionToCall will receive a single parameter which is a function. Call it to signal the end of operation.
+the `else` method takes a function as a parameter. The provided function is invoked if the value provided to `eval` is falsy. `functionToCall` will receive a single parameter which is a function. Call it to signal the end of operation.
 
 ### `AsyncCondition#finally functionToCall`
 
 the `finally()` method takes a function as a parameter. The provided function is invoked only after the operation of either `then()` or `else()` has been finished.
 
-example:
+**Example:**
 
 ```coffee-script
 c1 = new AsyncCondition
@@ -117,7 +117,7 @@ A shorthand for AsyncCondition
 
 `asyncIf expression` (returns an AsyncCondition instance who's `eval()` has already been called.)
 
-example: (the same scenario as above)
+**Example:**
 
 ```coffee-script
 asyncIf (typeof 1 is 'number')
@@ -162,7 +162,7 @@ Returns a new AsyncCondition object. It's methods are chainable. So you don't ha
 
 the `finally()` method takes a function as a parameter. The provided function (`fn`) is invoked only after iteration is complete. (i.e. `generateWith` returned `null` or `stop` was called)
 
-Example: (In the example below, we actually iterate over an array and do some asynchronous operations)
+**Example:** (In the example below, we actually iterate over an array and do some asynchronous operations)
 
 ```coffee-script
 testString = ''
@@ -282,7 +282,7 @@ Returns a new AsyncCollector object. It's methods are chainable. So you don't ha
 
 the `finally()` method takes a function as a parameter. The provided function (`fn`) is invoked only after iteration is complete. As a parameter, it will receive as a parameter the object in which the key/value pairs provided by `collect` method is collected.
 
-Example: 
+**Example:**
 
 ```coffee-script
 col = new AsyncCollector 3
@@ -331,7 +331,7 @@ The `publishInParallel` method lets you publish your data to all the subscribers
 
 the `finally()` method takes a function as a parameter. The provided function (`fn`) is invoked only after either all the subscriber has called the `next` function or at least one has called the `stop` function.
 
-Example: 
+**Example:**
 
 ```coffee-script
 testString = ''
@@ -365,6 +365,8 @@ shallowCopy copies all the properties/items in an object/array to a new one. If 
 
 It handles Regex and Date objects as well. Also, calls the constructor for user made classes and copies the properties. So, if there are no hidden properties, user made class instances should be copied reasonably reliably.
 
+**Example:**
+
 ```
 testObject = {
   a: 3
@@ -393,6 +395,8 @@ deepCopy copies all the properties/items in an object/array to a new one **recur
 
 It handles Regex and Date objects as well. Also, calls the constructor for user made classes and copies the properties. So, if there are no hidden properties, user made class instances should be copied reasonably reliably.
 
+**Example:**
+
 ```
 testObject = {
   a: 3
@@ -419,7 +423,8 @@ console.log testObject.b is copiedObject.b # false
 
 `once` returns a function that can be called only once. Effectively you could say it converts a function so that it can be called only once. It passes on the execution context (a.k.a. `this`) reliably.
 
-Example
+**Example:**
+
 ```
 testInteger = 0
 
@@ -439,7 +444,7 @@ console.log testInteger # prints 1
 
 `merge` as the name suggests, merges two values (most usefully objects and arrays) into one. `merge` makes sure that the original values `value1` and `value2` are not altered in any way. However it does not ensure that the tree is fully unique. In order to get a guaranteed unique copy perform `deepCopy merge value1, value2`
 
-Example
+**Example:**
 
 ```
     a = { a: 1, c: { d: 4, e: 5, k: [ 1, 4 ] } }
