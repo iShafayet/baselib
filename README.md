@@ -52,7 +52,7 @@ npm install baselib --save
 ## delay
 `delay timeToWaitInMilliseconds, functionToCall`
 
-<u>example:</u>
+**Example:**
 ```coffee-script
 console.log 'Do Something'
 delay 2000, ->
