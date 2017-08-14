@@ -1,0 +1,24 @@
+{
+  "name": "baselib",
+  "description": "One-stop solution for essential utilities (i.e. async loops, conditions, pub/sub) for nodejs and the browser.",
+  "main": "baselib.html",
+  "authors": [
+    "Sayem Shafayet <ishafayet@gmail.com> (http://ishafayet.me/)"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "library",
+    "condition",
+    "pub/sub",
+    "events",
+    "async",
+    "utility"
+  ],
+  "homepage": "https://github.com/iShafayet/baselib",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test"
+  ]
+}
